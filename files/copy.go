@@ -72,7 +72,7 @@ func (cw *CopyWalker) Walk(root string) error {
 }
 
 func (cw *CopyWalker) walk(path string, info os.FileInfo, err error) error {
-	log.Infof("Walk at %s", path)
+	log.Debugf("Walk at %s", path)
 	if copySrc, err := os.Open(path); err == nil {
 		isDir, _ := IsDir(path)
 		if !cw.isAlreadyCopied(path) && !isDir {

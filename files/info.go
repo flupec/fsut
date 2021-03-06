@@ -1,7 +1,6 @@
 package files
 
 import (
-	log "github.com/sirupsen/logrus"
 	"os"
 	"time"
 )
@@ -34,10 +33,8 @@ func NewFileSize(byteSize int64) FileSize {
 	}
 
 	idx := len(orderedFactors) - 1
-	log.Infof("%s", orderedFactors[idx])
 	for idx != 0 || byteSize / int64(orderedFactors[idx]) == 0 {
 		idx--
-		log.Infof("%s", orderedFactors[idx])
 	}
 	factor := orderedFactors[idx]
 	howManyFits := float64(byteSize / int64(factor))
