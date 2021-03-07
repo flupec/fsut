@@ -55,10 +55,6 @@ func copyFile(to string, filePath string, strategy CopyStrategy) error {
 	return nil
 }
 
-type Walker interface {
-	Walk(root string) error
-}
-
 type CopyWalker struct {
 	copyTo        string
 	alreadyCopied map[string]struct{}
@@ -72,7 +68,7 @@ func (cw *CopyWalker) Walk(root string) error {
 }
 
 func (cw *CopyWalker) walk(path string, info os.FileInfo, err error) error {
-	log.Debugf("Walk at %s", path)
+	log.Debugf("Copy walk at %s", path)
 	if copySrc, err := os.Open(path); err == nil {
 		isDir, _ := IsDir(path)
 		if !cw.isAlreadyCopied(path) && !isDir {
