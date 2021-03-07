@@ -16,22 +16,18 @@ func TestCopyWalker(t *testing.T) {
 	dirUnderRoot := rootDir + "/" + "dir"
 	err = os.Mkdir(dirUnderRoot, 0777)
 	assert.Nil(t, err)
-	t.Log(err)
 
 	fileUnderDirUnderRoot := dirUnderRoot + "/" + "file2.txt"
 	err = ioutil.WriteFile(fileUnderDirUnderRoot, []byte("file2"), 0777)
 	assert.Nil(t, err)
-	t.Log(err)
 
 	copyTo := rootDir + "/" + "copyDest"
 	err = os.Mkdir(copyTo, 0777)
 	assert.Nil(t, err)
-	t.Log(err)
 
 	walker := NewCopyWalker(copyTo, nil)
 	err = walker.Walk(dirUnderRoot)
 	assert.Nil(t, err)
-	t.Log(err)
 
 	_ = os.Remove(fileUnderRootDir)
 	_ = os.Remove(fileUnderDirUnderRoot)
